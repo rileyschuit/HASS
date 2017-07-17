@@ -1,0 +1,107 @@
+- alias: Heal ZWave Nightly
+  trigger:
+    platform: time
+    at: '2:31:00'
+  action:
+    - service: zwave.heal_network
+
+- alias: "Sunset - exterior lights"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '+00:00:00'  
+  action:
+    - service: switch.turn_on
+      entity_id: switch.ge_12722_onoff_relay_switch_switch_3_0
+    - service: switch.turn_on
+      entity_id: switch.ge_12722_onoff_relay_switch_switch_4_0
+    - service: switch.turn_on
+      entity_id: switch.leviton_unknown_type3401_id0001_switch_5_0 
+
+- alias: "Sunrise - exterior lights"
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:00:00'  
+  action:
+    - service: switch.turn_off
+      entity_id: switch.ge_12722_onoff_relay_switch_switch_3_0
+    - service: switch.turn_off
+      entity_id: switch.ge_12722_onoff_relay_switch_switch_4_0
+    - service: switch.turn_on
+      entity_id: switch.leviton_unknown_type3401_id0001_switch_5_0 
+
+- alias: "Turn off fish tank light when it is light out"
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+00:00:00'  
+  action:
+    - service: switch.turn_off
+      entity_id: switch.fish_tank_light
+
+- alias: "Turn on fish tank light when it is dark and it's 6 AM"
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: sun.sun
+          state: below_horizon
+  trigger:
+     platform: time
+     at: "06:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.fish_tank_light
+
+- alias: "Turn on fish tank light when it is dark"
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: switch.turn_on
+      entity_id: switch.fish_tank_light
+
+- alias: "Yet turn off fish tank light when it is 10 PM"
+  trigger:
+     platform: time
+     at: "22:00:00"
+  action:
+    - service: switch.turn_off
+      entity_id: switch.fish_tank_light
+
+- alias: "Set HW recirculator off when NEST is away"
+  trigger:
+    platform: state
+    entity_id: climate.hallway
+    state: 'away_mode:on'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
+
+- alias: "Set HW recirculator on when NEST is home"
+  trigger:
+    platform: state
+    entity_id: climate.hallway
+    state: 'away_mode:off'
+  action:
+  - service: switch.turn_on
+    entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
+
+#- alias: "Set HW recirculator off when NEST is away"
+#  trigger:
+#    platform: state
+#    entity_id: climate.hallway.away_mode
+#    to: 'on'
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0 
+
+#- alias: "Set HW recirculator on when NEST is home"
+#  trigger:
+#    platform: state
+#    entity_id: climate.hallway.away_mode
+#    to: 'off'
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0

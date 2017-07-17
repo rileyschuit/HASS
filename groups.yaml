@@ -1,0 +1,47 @@
+default_view:
+  view: true
+  icon: mdi:home
+  entities:
+  - climate.hallway
+  - media_player.un60ju6500_un60ju6400
+  - media_player.plex_web_chrome
+  - sensor.pws_weather_1d
+  - sensor.pws_weather_1n
+  - sensor.pws_weather_2d
+  - sensor.pws_weather_3d
+  - sensor.pws_alerts
+cameras:
+  name: Cameras
+  view: true
+  #icon: mdi:cctv
+  icon: mdi:camera
+  entities:
+  - camera.driveway
+  - camera.front_door
+  - camera.side_entry
+switches:
+  name: Sensors
+  icon: mdi:account-multiple
+  view: true
+  entities:
+  - switch.ge_12722_onoff_relay_switch_switch_3_0
+  - switch.ge_12722_onoff_relay_switch_switch_4_0
+  - switch.leviton_unknown_type3401_id0001_switch_5_0
+  - switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
+  - switch.fish_tank_light
+automations:
+  name: Automations
+  icon: mdi:settings
+  view: true
+  entities:
+  - automation.heal_zwave_nightly
+  - automation.set_hw_recirculator_off_when_nest_is_away
+  - automation.set_hw_recirculator_on_when_nest_is_home
+  - automation.turn_off_fish_tank_light_when_it_is_light_out
+  - automation.turn_off_garage_door_lights_on_sunrise
+  - automation.turn_on_fish_tank_light_when_it_is_dark
+  - automation.turn_on_fish_tank_light_when_it_is_dark_and_its_6_am
+  - automation.sunrise__exterior_lights 
+  - automation.sunset__exterior_lights
+  - automation.yet_turn_off_fish_tank_light_when_it_is_10_pm
+

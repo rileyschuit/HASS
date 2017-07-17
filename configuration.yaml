@@ -1,0 +1,160 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Rathdrum Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude 
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret time_zone
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret api_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+#updater:
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+# Weather Prediction
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+  - platform: moon
+  - platform: yr
+    monitored_conditions:
+      - temperature
+      - symbol
+      - precipitation
+      - windSpeed
+      - windDirection
+      - humidity
+      - cloudiness
+  - platform: openweathermap
+    forecast: True
+    api_key: !secret openweathermap_api_key 
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - weather_1d
+      - weather_1n
+      - weather_2d
+      - weather_2n
+      - weather_3d
+      - weather_3n
+      - weather_4d
+      - weather_4n
+
+
+weather:
+  - name: Rathdrum Idaho
+    platform: openweathermap
+    api_key: !secret openweathermap_api_key
+    monitored_conditions:
+      - temp_high_record_f
+      - temp_high_1d_f
+      - temp_f
+      - temp_low_1d_f
+      - temp_low_record_f
+      - precip_1d
+      - wind_mph
+      - wind_1d_mph
+      - alerts
+
+# Text to speech
+#tts:
+#  platform: google
+
+camera:
+  - name: Driveway
+    platform: amcrest
+    host: 10.0.1.51
+    username: admin
+    password: !secret camera_password
+    resolution: low
+    stream_source: rtsp
+  - name: Front Door
+    platform: amcrest
+    host: 10.0.1.52
+    username: admin
+    password: !secret camera_password
+    resolution: low
+    stream_source: rtsp
+  - name: Side Entry
+    platform: amcrest
+    host: 10.0.1.53
+    username: admin
+    password: !secret camera_password
+    resolution: low
+    stream_source: rtsp
+
+device_tracker:
+  - platform: unifi
+    host: 10.0.1.2
+    username: admin
+    password: !secret unifi_pw
+    site_id: default
+    verify_ssl: 'False'
+
+zwave:
+    usb_path: /dev/ttyUSB0
+
+nest:
+  client_id: !secret nest_client_id 
+  client_secret: !secret nest_client_secret
+
+google:
+  client_id: !secret google_client_id 
+  client_secret: !secret google_client_secret 
+
+media_player:
+  - platform: plex
+    entity_namespace: 'Plex Server'
+    include_non_clients: true
+    scan_interval: 5
+    show_all_controls: false
+    use_custom_entity_ids: true
+    use_episode_art: true
+
+notify:
+  - name: !secret slack_name
+    platform: slack
+    api_key: !secret slack_api_key 
+    username: !secret slack_username
+    default_channel: !secret slack_channel 
+    icon: !secret slack_icon 
+
+group: !include groups.yaml
+automation: !include automations.yaml
