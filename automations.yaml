@@ -28,7 +28,7 @@
       entity_id: switch.ge_12722_onoff_relay_switch_switch_3_0
     - service: switch.turn_off
       entity_id: switch.ge_12722_onoff_relay_switch_switch_4_0
-    - service: switch.turn_on
+    - service: switch.turn_off
       entity_id: switch.leviton_unknown_type3401_id0001_switch_5_0 
 
 - alias: "Turn off fish tank light when it is light out"
