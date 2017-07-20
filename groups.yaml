@@ -24,6 +24,7 @@ switches:
     - switch.fish_tank_light
     - switch.garage_door_lights_switch
     - switch.porch_light_1_switch
+    - switch.porch_light_2_switch
     - switch.front_door_light_switch
     - switch.shop_outside_light_switch
 automations:

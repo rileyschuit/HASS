@@ -20,6 +20,8 @@
     - service: switch.turn_on
       entity_id: switch.porch_light_1_switch 
     - service: switch.turn_on
+      entity_id: switch.porch_light_2_switch 
+    - service: switch.turn_on
       entity_id: switch.shop_outside_light_switch 
 
 - alias: "Sunrise - exterior lights"
@@ -35,6 +37,8 @@
       entity_id: switch.front_door_light_switch 
     - service: switch.turn_off
       entity_id: switch.porch_light_1_switch 
+    - service: switch.turn_off
+      entity_id: switch.porch_light_2_switch 
     - service: switch.turn_off
       entity_id: switch.shop_outside_light_switch 
 

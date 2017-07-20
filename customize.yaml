@@ -30,7 +30,12 @@ switch.garage_door_lights_switch:
   icon: mdi:lightbulb
 
 switch.porch_light_1_switch:
-  friendly_name: 'Patio light'
+  friendly_name: 'Patio light 1'
+  hidden: False
+  icon: mdi:lightbulb
+
+switch.porch_light_2_switch:
+  friendly_name: 'Patio light 2'
   hidden: False
   icon: mdi:lightbulb
 
