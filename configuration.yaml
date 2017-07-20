@@ -1,15 +1,15 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Rathdrum Home
+  name: !secret home_name 
   # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude 
   longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: !secret elevation
+  elevation: !secret elevation 
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: !secret time_zone
+  time_zone: !secret time_zone 
   customize: !include customize.yaml
 
 # Enables the frontend
@@ -20,16 +20,7 @@ config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret api_password
-  # Uncomment this if you are using SSL or running in Docker etc
-  # base_url: example.duckdns.org:8123
-
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-#updater:
+  api_password: !secret api_password 
 
 # Discover some devices automatically
 discovery:
@@ -64,9 +55,9 @@ sensor:
       - cloudiness
   - platform: openweathermap
     forecast: True
-    api_key: !secret openweathermap_api_key 
+    api_key: 8a42e8afa901f6f7d007503657e98ae1 
   - platform: wunderground
-    api_key: !secret wunderground_api_key
+    api_key: b65d0586d56ba400 
     monitored_conditions:
       - weather_1d
       - weather_1n
@@ -77,11 +68,10 @@ sensor:
       - weather_4d
       - weather_4n
 
-
 weather:
   - name: Rathdrum Idaho
     platform: openweathermap
-    api_key: !secret openweathermap_api_key
+    api_key: 8a42e8afa901f6f7d007503657e98ae1 
     monitored_conditions:
       - temp_high_record_f
       - temp_high_1d_f
@@ -93,37 +83,30 @@ weather:
       - wind_1d_mph
       - alerts
 
-# Text to speech
-#tts:
-#  platform: google
+amcrest:
+  - host: 10.0.1.51
+    username: admin
+    password: !secret camera_password 
+    resolution: high 
+    stream_source: rtsp
+  - host: 10.0.1.52
+    username: admin
+    password: !secret camera_password 
+    resolution: high
+    stream_source: rtsp
+  - host: 10.0.1.53
+    username: admin
+    password: !secret camera_password 
+    resolution: high
+    stream_source: rtsp
 
 camera:
-  - name: Driveway
-    platform: amcrest
-    host: 10.0.1.51
-    username: admin
-    password: !secret camera_password
-    resolution: low
-    stream_source: rtsp
-  - name: Front Door
-    platform: amcrest
-    host: 10.0.1.52
-    username: admin
-    password: !secret camera_password
-    resolution: low
-    stream_source: rtsp
-  - name: Side Entry
-    platform: amcrest
-    host: 10.0.1.53
-    username: admin
-    password: !secret camera_password
-    resolution: low
-    stream_source: rtsp
+  - platform: amcrest
 
 device_tracker:
   - platform: unifi
     host: 10.0.1.2
-    username: admin
+    username: !secret unifi_user
     password: !secret unifi_pw
     site_id: default
     verify_ssl: 'False'
@@ -132,12 +115,8 @@ zwave:
     usb_path: /dev/ttyUSB0
 
 nest:
-  client_id: !secret nest_client_id 
+  client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-
-google:
-  client_id: !secret google_client_id 
-  client_secret: !secret google_client_secret 
 
 media_player:
   - platform: plex
@@ -147,14 +126,6 @@ media_player:
     show_all_controls: false
     use_custom_entity_ids: true
     use_episode_art: true
-
-notify:
-  - name: !secret slack_name
-    platform: slack
-    api_key: !secret slack_api_key 
-    username: !secret slack_username
-    default_channel: !secret slack_channel 
-    icon: !secret slack_icon 
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -2,6 +2,18 @@
 ## Customize
 #################################################################
 
+camera.amcrest_camera:
+  friendly_name: 'Driveway'
+  hidden: False
+
+camera.amcrest_camera_2:
+  friendly_name: 'Front door'
+  hidden: False
+
+camera.amcrest_camera_3:
+  friendly_name: 'Side entry'
+  hidden: False
+
 switch.aeotec_dsc06106_smart_energy_switch_switch_2_0:
   friendly_name: 'HW Test'
   hidden: False
@@ -12,18 +24,23 @@ switch.fish_tank_light:
   hidden: False
   icon: mdi:fish
 
-switch.ge_12722_onoff_relay_switch_switch_3_0:
+switch.garage_door_lights_switch:
   friendly_name: 'Garage outside lights'
   hidden: False
   icon: mdi:lightbulb
 
-switch.ge_12722_onoff_relay_switch_switch_4_0:
+switch.porch_light_1_switch:
   friendly_name: 'Patio light'
   hidden: False
   icon: mdi:lightbulb
 
-switch.leviton_unknown_type3401_id0001_switch_5_0:
+switch.front_door_light_switch:
   friendly_name: 'Front door lights'
+  hidden: False
+  icon: mdi:lightbulb
+
+switch.shop_outside_light_switch:
+  friendly_name: 'Shop outside light'
   hidden: False
   icon: mdi:lightbulb
 

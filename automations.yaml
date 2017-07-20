@@ -1,4 +1,5 @@
 - alias: Heal ZWave Nightly
+  initial_state: true
   trigger:
     platform: time
     at: '2:31:00'
@@ -6,32 +7,39 @@
     - service: zwave.heal_network
 
 - alias: "Sunset - exterior lights"
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
     offset: '+00:00:00'  
   action:
     - service: switch.turn_on
-      entity_id: switch.ge_12722_onoff_relay_switch_switch_3_0
+      entity_id: switch.garage_door_lights_switch 
     - service: switch.turn_on
-      entity_id: switch.ge_12722_onoff_relay_switch_switch_4_0
+      entity_id: switch.front_door_light_switch 
     - service: switch.turn_on
-      entity_id: switch.leviton_unknown_type3401_id0001_switch_5_0 
+      entity_id: switch.porch_light_1_switch 
+    - service: switch.turn_on
+      entity_id: switch.shop_outside_light_switch 
 
 - alias: "Sunrise - exterior lights"
+  initial_state: true
   trigger:
     platform: sun
     event: sunrise
     offset: '+00:00:00'  
   action:
     - service: switch.turn_off
-      entity_id: switch.ge_12722_onoff_relay_switch_switch_3_0
+      entity_id: switch.garage_door_lights_switch 
     - service: switch.turn_off
-      entity_id: switch.ge_12722_onoff_relay_switch_switch_4_0
+      entity_id: switch.front_door_light_switch 
     - service: switch.turn_off
-      entity_id: switch.leviton_unknown_type3401_id0001_switch_5_0 
+      entity_id: switch.porch_light_1_switch 
+    - service: switch.turn_off
+      entity_id: switch.shop_outside_light_switch 
 
 - alias: "Turn off fish tank light when it is light out"
+  initial_state: true
   trigger:
     platform: sun
     event: sunrise
@@ -41,6 +49,7 @@
       entity_id: switch.fish_tank_light
 
 - alias: "Turn on fish tank light when it is dark and it's 6 AM"
+  initial_state: true
   condition:
     - condition: and
       conditions:
@@ -55,6 +64,7 @@
     entity_id: switch.fish_tank_light
 
 - alias: "Turn on fish tank light when it is dark"
+  initial_state: true
   trigger:
     platform: sun
     event: sunset
@@ -63,6 +73,7 @@
       entity_id: switch.fish_tank_light
 
 - alias: "Yet turn off fish tank light when it is 10 PM"
+  initial_state: true
   trigger:
      platform: time
      at: "22:00:00"
@@ -71,6 +82,7 @@
       entity_id: switch.fish_tank_light
 
 - alias: "Set HW recirculator off when NEST is away"
+  initial_state: true
   trigger:
     platform: state
     entity_id: climate.hallway
@@ -80,6 +92,7 @@
       entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
 
 - alias: "Set HW recirculator on when NEST is home"
+  initial_state: true
   trigger:
     platform: state
     entity_id: climate.hallway
