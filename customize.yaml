@@ -2,6 +2,26 @@
 ## Customize
 #################################################################
 
+device_tracker.computer__rileys_work_laptop:
+  friendly_name: 'Rileys laptop'
+  hidden: False
+  icon: mdi:laptop-mac
+
+device_tracker.computer__schuitmac:
+  friendly_name: 'Home iMac'
+  hidden: False
+  icon: mdi:desktop-mac
+
+device_tracker.phone__riley:
+  friendly_name: 'Riley'
+  hidden: False
+  icon: mdi:cellphone-iphone
+
+device_tracker.phone__leanne:
+  friendly_name: 'Leanne'
+  hidden: False
+  icon: mdi:cellphone-android
+
 camera.amcrest_camera:
   friendly_name: 'Driveway'
   hidden: False

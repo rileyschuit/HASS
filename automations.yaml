@@ -6,6 +6,14 @@
   action:
     - service: zwave.heal_network
 
+- alias: Notifcation that Nest has set away mode
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: "{{ is_state_attr('climate.hallway', 'away_mode', 'on') }}"
+  action:
+    service: shell_command.away_mode_on
+
 - alias: "Sunset - exterior lights"
   initial_state: true
   trigger:
@@ -85,40 +93,3 @@
     - service: switch.turn_off
       entity_id: switch.fish_tank_light
 
-- alias: "Set HW recirculator off when NEST is away"
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: climate.hallway
-    state: 'away_mode:on'
-  action:
-    - service: switch.turn_off
-      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
-
-- alias: "Set HW recirculator on when NEST is home"
-  initial_state: true
-  trigger:
-    platform: state
-    entity_id: climate.hallway
-    state: 'away_mode:off'
-  action:
-  - service: switch.turn_on
-    entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0
-
-#- alias: "Set HW recirculator off when NEST is away"
-#  trigger:
-#    platform: state
-#    entity_id: climate.hallway.away_mode
-#    to: 'on'
-#  action:
-#    - service: switch.turn_off
-#      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0 
-
-#- alias: "Set HW recirculator on when NEST is home"
-#  trigger:
-#    platform: state
-#    entity_id: climate.hallway.away_mode
-#    to: 'off'
-#  action:
-#    - service: switch.turn_on
-#      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch_2_0

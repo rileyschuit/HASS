@@ -8,33 +8,42 @@ default_view:
   - sensor.pws_weather_2d
   - sensor.pws_weather_3d
   - sensor.pws_alerts
-cameras:
-  name: Cameras
-  view: true
-  icon: mdi:cctv
-  entities:
+  - device_tracker.phone__riley
+  - device_tracker.phone__leanne
+#daily_forecast:
+#  view: true
+#  name: Daily Forecast
+#  entities:
+#  - sensor.pws_weather_1d
+#  - sensor.pws_weather_1n
+#  - sensor.pws_weather_2d
+#  - sensor.pws_weather_3d
+#cameras:
+#  name: Cameras
+#  view: true
+#  icon: mdi:cctv
+#  entities:
   - camera.amcrest_camera
   - camera.amcrest_camera_2
   - camera.amcrest_camera_3
-switches:
-  name: Sensors
-  icon: mdi:account-multiple
-  view: true
-  entities:
-    - switch.fish_tank_light
-    - switch.garage_door_lights_switch
-    - switch.porch_light_1_switch
-    - switch.porch_light_2_switch
-    - switch.front_door_light_switch
-    - switch.shop_outside_light_switch
+#switches:
+#  name: Sensors
+#  icon: mdi:account-multiple
+#  view: true
+#  entities:
+  - switch.fish_tank_light
+  - switch.garage_door_lights_switch
+  - switch.porch_light_1_switch
+  - switch.porch_light_2_switch
+  - switch.front_door_light_switch
+  - switch.shop_outside_light_switch
 automations:
   name: Automations
   icon: mdi:settings
   view: true
   entities:
   - automation.heal_zwave_nightly
-  - automation.set_hw_recirculator_off_when_nest_is_away
-  - automation.set_hw_recirculator_on_when_nest_is_home
+  - automation.nest_test  
   - automation.turn_off_fish_tank_light_when_it_is_light_out
   - automation.turn_on_fish_tank_light_when_it_is_dark
   - automation.turn_on_fish_tank_light_when_it_is_dark_and_its_6_am
