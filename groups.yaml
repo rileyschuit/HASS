@@ -43,7 +43,7 @@ automations:
   view: true
   entities:
   - automation.heal_zwave_nightly
-  - automation.nest_test  
+  - automation.notifcation_that_nest_has_set_away_mode
   - automation.turn_off_fish_tank_light_when_it_is_light_out
   - automation.turn_on_fish_tank_light_when_it_is_dark
   - automation.turn_on_fish_tank_light_when_it_is_dark_and_its_6_am
