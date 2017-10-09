@@ -2,52 +2,63 @@ default_view:
   view: true
   icon: mdi:home
   entities:
+  - device_tracker.phone__riley
+  - device_tracker.phone__leanne
+  - group.cameras
+  - group.weather
+  - group.comfort
+comfort:
+  name: "Comfort"
+  view: false
+  icon: mdi:emoticon-happy
+  entities:
   - climate.hallway
+cameras:
+  name: "Outside Cameras"
+  view: false 
+  icon: mdi:cctv
+  entities:
+  - camera.amcrest_camera
+  - camera.amcrest_camera_2
+  - camera.amcrest_camera_3
+weather:
+  name: Weather
+  view: false
+  entities:
   - sensor.pws_weather_1d
   - sensor.pws_weather_1n
   - sensor.pws_weather_2d
   - sensor.pws_weather_3d
   - sensor.pws_alerts
-  - device_tracker.phone__riley
-  - device_tracker.phone__leanne
-#daily_forecast:
-#  view: true
-#  name: Daily Forecast
-#  entities:
-#  - sensor.pws_weather_1d
-#  - sensor.pws_weather_1n
-#  - sensor.pws_weather_2d
-#  - sensor.pws_weather_3d
-#cameras:
-#  name: Cameras
-#  view: true
-#  icon: mdi:cctv
-#  entities:
-  - camera.amcrest_camera
-  - camera.amcrest_camera_2
-  - camera.amcrest_camera_3
-#switches:
-#  name: Sensors
-#  icon: mdi:account-multiple
-#  view: true
-#  entities:
+switch_details:
+  name: "All Switches"
+  view: false
+  icon: mdi:toggle-switch-off
+  entities:
   - switch.fish_tank_light
   - switch.garage_door_lights_switch
   - switch.porch_light_1_switch
   - switch.porch_light_2_switch
   - switch.front_door_light_switch
   - switch.shop_outside_light_switch
-automations:
-  name: Automations
-  icon: mdi:settings
-  view: true
+automation_details:
+  name: "All Automations"
+  view: false
+  icon: mdi:settings-box
   entities:
-  - automation.heal_zwave_nightly
   - automation.notifcation_that_nest_has_set_away_mode
   - automation.turn_off_fish_tank_light_when_it_is_light_out
   - automation.turn_on_fish_tank_light_when_it_is_dark
   - automation.turn_on_fish_tank_light_when_it_is_dark_and_its_6_am
-  - automation.sunrise__exterior_lights 
+  - automation.sunrise__exterior_lights
   - automation.sunset__exterior_lights
   - automation.yet_turn_off_fish_tank_light_when_it_is_10_pm
+  - automation.heal_zwave_nightly
+settings:
+  name: Settings
+  icon: mdi:settings
+  view: true
+  entities:
+  - group.switch_details
+  - group.automation_details
 

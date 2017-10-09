@@ -2,6 +2,31 @@
 ## Customize
 #################################################################
 
+climate.hallway:
+  friendly_name: 'Hallway Thermostat'
+  hidden: False
+  entity_picture: https://assets.ifttt.com/images/channels/811416297/icons/small.png 
+
+binary_sensor.kids_room_nest_protect_oliver_online:
+  friendly_name: 'Oliver Protect'
+  entity_picture: https://cdn.dribbble.com/users/192648/screenshots/1692892/protect.png
+
+binary_sensor.master_bedroom_nest_protect_online:
+  friendly_name: 'Master Protect'
+  entity_picture: https://cdn.dribbble.com/users/192648/screenshots/1692892/protect.png
+
+binary_sensor.bedroom_nest_protect_guest_online:
+  friendly_name: 'Guest Protect'
+  entity_picture: https://cdn.dribbble.com/users/192648/screenshots/1692892/protect.png
+
+binary_sensor.bedroom_nest_protect_play_room_online:
+  friendly_name: 'Playroom Protect'
+  entity_picture: https://cdn.dribbble.com/users/192648/screenshots/1692892/protect.png
+
+binary_sensor.hallway_nest_protect_online:
+  friendly_name: 'Hallway Protect'
+  entity_picture: https://cdn.dribbble.com/users/192648/screenshots/1692892/protect.png
+
 device_tracker.computer__rileys_work_laptop:
   friendly_name: 'Rileys laptop'
   hidden: False
