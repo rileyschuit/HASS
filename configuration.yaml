@@ -128,10 +128,6 @@ nest:
 #  password: !secret zm_pass 
 
 shell_command: !include shell_command.yml
-#  away_mode_on: > 
-#    curl -X POST --data-urlencode 
-#    'payload={"channel": "@hiccupatron", "username": "err", "text": "NEST Away Mode on!", "icon_emoji": ":err:"}' 
-#    https://hooks.slack.com/services/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 
 
 group: !include groups.yaml
 automation: !include automations.yaml
