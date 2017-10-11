@@ -26,7 +26,7 @@ http:
 discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+#conversation:
 
 # Enables support for tracking state changes over time.
 history:
@@ -55,7 +55,7 @@ sensor:
       - cloudiness
   - platform: openweathermap
     forecast: True
-    api_key: 8a42e8afa901f6f7d007503657e98ae1 
+    api_key: !secret openweathermap_api 
   - platform: wunderground
     api_key: b65d0586d56ba400 
     monitored_conditions:
@@ -67,21 +67,6 @@ sensor:
       - weather_3n
       - weather_4d
       - weather_4n
-
-weather:
-  - name: Rathdrum Idaho
-    platform: openweathermap
-    api_key: 8a42e8afa901f6f7d007503657e98ae1 
-    monitored_conditions:
-      - temp_high_record_f
-      - temp_high_1d_f
-      - temp_f
-      - temp_low_1d_f
-      - temp_low_record_f
-      - precip_1d
-      - wind_mph
-      - wind_1d_mph
-      - alerts
 
 amcrest:
   - host: 10.0.1.51

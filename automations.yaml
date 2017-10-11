@@ -6,15 +6,26 @@
   action:
     - service: zwave.heal_network
 
-- alias: Notifcation that Nest has set away mode
+- alias: Nest set to away
   initial_state: true
   trigger:
     platform: template
     value_template: "{{ is_state_attr('climate.hallway', 'away_mode', 'on') }}"
   action:
-    service: shell_command.away_mode_on
+    - service: shell_command.away_mode_on
+    - service: switch.turn_off
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
 
-- alias: "Sunset - exterior lights"
+- alias: Nest set to home
+  initial_state: true
+  trigger:
+    platform: template
+    value_template: "{{ is_state_attr('climate.hallway', 'away_mode', 'off') }}"
+  action:
+    - service: switch.turn_on
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
+
+- alias: "Sunset"
   initial_state: true
   trigger:
     platform: sun
@@ -31,8 +42,10 @@
       entity_id: switch.porch_light_2_switch 
     - service: switch.turn_on
       entity_id: switch.shop_outside_light_switch 
+    - service: switch.turn_on
+      entity_id: switch.fish_tank_light
 
-- alias: "Sunrise - exterior lights"
+- alias: "Sunrise"
   initial_state: true
   trigger:
     platform: sun
@@ -49,18 +62,10 @@
       entity_id: switch.porch_light_2_switch 
     - service: switch.turn_off
       entity_id: switch.shop_outside_light_switch 
-
-- alias: "Turn off fish tank light when it is light out"
-  initial_state: true
-  trigger:
-    platform: sun
-    event: sunrise
-    offset: '+00:00:00'  
-  action:
     - service: switch.turn_off
       entity_id: switch.fish_tank_light
 
-- alias: "Turn on fish tank light when it is dark and it's 6 AM"
+- alias: "Fish tank light at 6 AM"
   initial_state: true
   condition:
     - condition: and
@@ -75,16 +80,7 @@
     service: switch.turn_on
     entity_id: switch.fish_tank_light
 
-- alias: "Turn on fish tank light when it is dark"
-  initial_state: true
-  trigger:
-    platform: sun
-    event: sunset
-  action:
-    - service: switch.turn_on
-      entity_id: switch.fish_tank_light
-
-- alias: "Yet turn off fish tank light when it is 10 PM"
+- alias: "Fish tank off at 10 PM"
   initial_state: true
   trigger:
      platform: time

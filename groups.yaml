@@ -41,18 +41,18 @@ switch_details:
   - switch.porch_light_2_switch
   - switch.front_door_light_switch
   - switch.shop_outside_light_switch
+  - switch.aeotec_dsc06106_smart_energy_switch_switch
 automation_details:
   name: "All Automations"
   view: false
   icon: mdi:settings-box
   entities:
-  - automation.notifcation_that_nest_has_set_away_mode
-  - automation.turn_off_fish_tank_light_when_it_is_light_out
-  - automation.turn_on_fish_tank_light_when_it_is_dark
-  - automation.turn_on_fish_tank_light_when_it_is_dark_and_its_6_am
-  - automation.sunrise__exterior_lights
-  - automation.sunset__exterior_lights
-  - automation.yet_turn_off_fish_tank_light_when_it_is_10_pm
+  - automation.sunrise
+  - automation.sunset 
+  - automation.fish_tank_light_at_6_am
+  - automation.fish_tank_off_at_10_pm
+  - automation.msg_nest_is_away
+  - automation.nest_set_to_home
   - automation.heal_zwave_nightly
 settings:
   name: Settings

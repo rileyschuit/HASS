@@ -2,6 +2,10 @@
 ## Customize
 #################################################################
 
+switch.aeotec_dsc06106_smart_energy_switch_switch:
+  friendly_name: "Hot Water Recirculator"
+  icon: mdi:power-plug
+
 climate.hallway:
   friendly_name: 'Hallway Thermostat'
   hidden: False
