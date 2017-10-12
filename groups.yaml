@@ -36,6 +36,7 @@ switch_details:
   icon: mdi:toggle-switch-off
   entities:
   - switch.fish_tank_light
+  - switch.master_outside_light_switch
   - switch.garage_door_lights_switch
   - switch.porch_light_1_switch
   - switch.porch_light_2_switch
@@ -49,6 +50,7 @@ automation_details:
   entities:
   - automation.sunrise
   - automation.sunset 
+  - automation.master_outside_light__15_min_timer
   - automation.fish_tank_light_at_6_am
   - automation.fish_tank_off_at_10_pm
   - automation.msg_nest_is_away

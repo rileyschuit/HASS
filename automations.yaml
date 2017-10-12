@@ -6,6 +6,18 @@
   action:
     - service: zwave.heal_network
 
+- alias: Master outside light - 15 min timer 
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: switch.master_outside_light_switch 
+    to: 'on'
+    for:
+      minutes: 15
+  action:
+    service: switch.turn_off
+    entity_id: switch.master_outside_light_switch 
+
 - alias: Nest set to away
   initial_state: true
   trigger:

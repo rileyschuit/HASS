@@ -98,6 +98,10 @@ device_tracker:
 
 zwave:
     usb_path: /dev/ttyUSB0
+    polling_interval: 30000
+    device_config: 
+      switch.master_outside_light_switch:
+        polling_intensity: 1
 
 nest:
   client_id: !secret nest_client_id

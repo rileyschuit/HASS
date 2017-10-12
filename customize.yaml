@@ -63,10 +63,10 @@ camera.amcrest_camera_3:
   friendly_name: 'Side entry'
   hidden: False
 
-switch.aeotec_dsc06106_smart_energy_switch_switch_2_0:
-  friendly_name: 'HW Test'
+switch.master_outside_light_switch:
+  friendly_name: 'Master outside light'
   hidden: False
-  icon: mdi:oil-temperature
+  icon: mdi:lightbulb
 
 switch.fish_tank_light:
   friendly_name: 'Fish Tank light'
