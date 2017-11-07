@@ -7,6 +7,12 @@ default_view:
   - group.cameras
   - group.weather
   - group.comfort
+  - group.shortcuts
+shortcuts:
+  name: "Shortcuts"
+  view: false
+  entities:
+  - input_boolean.eco_mode
 comfort:
   name: "Comfort"
   view: false
@@ -55,7 +61,7 @@ automation_details:
   - automation.fish_tank_off_at_10_pm
   - automation.msg_nest_is_away
   - automation.nest_set_to_home
-  - automation.heal_zwave_nightly
+  - automation.eco_till_4_pm
 settings:
   name: Settings
   icon: mdi:settings

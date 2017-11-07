@@ -37,6 +37,12 @@ logbook:
 # Track the sun
 sun:
 
+input_boolean:
+  eco_mode:
+    name: Eco mode
+    initial: off
+    icon: mdi:leaf
+
 # Weather Prediction
 sensor:
   - platform: time_date
@@ -102,6 +108,16 @@ zwave:
     device_config: 
       switch.master_outside_light_switch:
         polling_intensity: 1
+      switch.porch_light_1_switch:
+        polling_intensity: 2 
+      switch.porch_light_2_switch:
+        polling_intensity: 2
+      switch.shop_outside_light_switch:
+        polling_intensity: 2
+      switch.front_door_light_switch:
+        polling_intensity: 2
+      switch.garage_door_lights_switch:
+        polling_intensity: 2
 
 nest:
   client_id: !secret nest_client_id

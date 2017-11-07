@@ -1,3 +1,44 @@
+- alias: Eco mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.eco_mode
+    state: 'on'  
+  action:
+    - service: switch.turn_off
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.hallway
+        operation_mode: eco
+
+- alias: Comfort mode
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.eco_mode
+    state: 'off'  
+  action:
+    - service: switch.turn_on
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.hallway
+        operation_mode: heat
+
+- alias: Turn off Eco mode at 4 PM
+  initial_state: true
+  trigger:
+    platform: time
+    at: '16:00:00'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.hallway
+        operation_mode: heat
+
 - alias: Heal ZWave Nightly
   initial_state: true
   trigger:
