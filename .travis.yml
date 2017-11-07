@@ -1,4 +1,6 @@
 language: python
+git:
+  depth: 1
 python:
   - "3.4"
 install:
