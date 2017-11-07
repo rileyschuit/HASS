@@ -56,8 +56,8 @@
     for:
       minutes: 15
   action:
-    service: switch.turn_off
-    entity_id: switch.master_outside_light_switch 
+    - service: switch.turn_off
+      entity_id: switch.master_outside_light_switch 
 
 - alias: Nest set to away
   initial_state: true
@@ -130,8 +130,8 @@
      platform: time
      at: "06:00:00"
   action:
-    service: switch.turn_on
-    entity_id: switch.fish_tank_light
+    - service: switch.turn_on
+      entity_id: switch.fish_tank_light
 
 - alias: "Fish tank off at 10 PM"
   initial_state: true
