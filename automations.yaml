@@ -2,7 +2,7 @@
   initial_state: true
   trigger:
     platform: state
-    entity_id: input_boolean.eco_mode
+    entity_id: binary_sensor.eco_mode
     state: 'on'  
   action:
     - service: switch.turn_off
@@ -16,7 +16,7 @@
   initial_state: true
   trigger:
     platform: state
-    entity_id: input_boolean.eco_mode
+    entity_id: binary_sensor.eco_mode
     state: 'off'  
   action:
     - service: switch.turn_on
