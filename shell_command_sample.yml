@@ -1,3 +1,7 @@
+  garage_opened: >
+    curl -X POST --data-urlencode
+    'payload={"channel": "@your_user", "username": ""ignignokt", "text": "Garage door opened!", "icon_emoji": ":"ignignokt:"}'
+    https://hooks.slack.com/services/just/an/example
   away_mode_on: >
     curl -X POST --data-urlencode
     'payload={"channel": "@your_user", "username": "err", "text": "NEST Away Mode on!", "icon_emoji": ":err:"}'

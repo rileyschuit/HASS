@@ -12,7 +12,8 @@ shortcuts:
   name: "Shortcuts"
   view: false
   entities:
-  - input_boolean.eco_mode
+  - input_boolean.eco_mode_till_4_pm
+  - input_boolean.enable_alerts
 comfort:
   name: "Comfort"
   view: false

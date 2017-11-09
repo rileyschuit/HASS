@@ -1,8 +1,56 @@
+- alias: Alert when enabled
+  initial_state: true
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.garage_door_1_sensor 
+      from: 'off'
+      to: 'on'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.enable_alerts
+      state: 'on'
+  action:
+    - service: shell_command.garage_opened
+
+# TODO: Turn on lights in garage for 10 minutes when ether door opens
+#- alias: Actions for garage doors open 
+#  initial_state: true
+#  trigger:
+#    - platform: state
+#      entity_id: binary_sensor.garage_door_1_sensor 
+#      to: 'on'
+#    - platform: state
+#      entity_id: binary_sensor.garage_door_2_sensor 
+#      to: 'on'
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.garage_light_1 
+#    - service: switch.turn_on
+#      entity_id: switch.garage_light_2 
+#
+#-alias: Set timer to turn off garage lights
+#  trigger:
+#    - platform: state
+#      entity_id: binary_sensor.garage_door_1_sensor 
+#      to: 'off'
+#      for:
+#        minutes: 10
+#    - platform: state
+#      entity_id: binary_sensor.garage_door_2_sensor 
+#      to: 'on'
+#      for:
+#        minutes: 10
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.garage_light_1 
+#    - service: switch.turn_off
+#      entity_id: switch.garage_light_2 
+
 - alias: Eco mode
   initial_state: true
   trigger:
     platform: state
-    entity_id: binary_sensor.eco_mode
+    entity_id: input_boolean.eco_mode_till_4_pm
     state: 'on'  
   action:
     - service: switch.turn_off
@@ -16,7 +64,7 @@
   initial_state: true
   trigger:
     platform: state
-    entity_id: binary_sensor.eco_mode
+    entity_id: input_boolean.eco_mode_till_4_pm
     state: 'off'  
   action:
     - service: switch.turn_on
@@ -29,8 +77,12 @@
 - alias: Turn off Eco mode at 4 PM
   initial_state: true
   trigger:
-    platform: time
-    at: '16:00:00'
+    - platform: time
+      at: '16:00:00'
+  condition: 
+    - condition: state
+      entity_id: input_boolean.eco_mode_till_4_pm
+      state: 'on'
   action:
     - service: switch.turn_on
       entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
@@ -38,6 +90,9 @@
       data:
         entity_id: climate.hallway
         operation_mode: heat
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.eco_mode_till_4_pm
 
 - alias: Heal ZWave Nightly
   initial_state: true
@@ -65,7 +120,6 @@
     platform: template
     value_template: "{{ is_state_attr('climate.hallway', 'away_mode', 'on') }}"
   action:
-    - service: shell_command.away_mode_on
     - service: switch.turn_off
       entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
 

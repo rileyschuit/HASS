@@ -38,10 +38,14 @@ logbook:
 sun:
 
 input_boolean:
-  eco_mode:
-    name: Eco mode
-    initial: off
-    icon: mdi:leaf
+  eco_mode_till_4_pm:
+      name: Eco mode till 4 PM
+      initial: off
+      icon: mdi:leaf
+  enable_alerts:
+      name: Enable away alerts
+      initial: off 
+      icon: mdi:message-alert
 
 # Weather Prediction
 sensor:
