@@ -42,13 +42,15 @@ switch_details:
   view: false
   icon: mdi:toggle-switch-off
   entities:
-  - switch.fish_tank_light
   - switch.master_outside_light_switch
   - switch.garage_door_lights_switch
   - switch.porch_light_1_switch
   - switch.porch_light_2_switch
   - switch.front_door_light_switch
   - switch.shop_outside_light_switch
+  - switch.garage_light_1_switch
+  - switch.garage_light_2_switch
+  - switch.fish_tank_light
   - switch.aeotec_dsc06106_smart_energy_switch_switch
 automation_details:
   name: "All Automations"
@@ -57,12 +59,15 @@ automation_details:
   entities:
   - automation.sunrise
   - automation.sunset 
+  - automation.grage_light_timers__10_min_timer
   - automation.master_outside_light__15_min_timer
   - automation.fish_tank_light_at_6_am
   - automation.fish_tank_off_at_10_pm
-  - automation.msg_nest_is_away
-  - automation.nest_set_to_home
-  - automation.eco_till_4_pm
+#  - automation.nest_set_to_away
+#  - automation.nest_set_to_home
+#  - automation.eco_till_4_pm
+  - automation.turn_on_garage_lights
+  - automation.grage_light_timers__10_min_timer
 settings:
   name: Settings
   icon: mdi:settings

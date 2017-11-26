@@ -46,6 +46,10 @@ input_boolean:
       name: Enable away alerts
       initial: off 
       icon: mdi:message-alert
+  msg_on_unique_behavior:
+      name: Interesting Behavior
+      initial: on
+      icon: mdi:message-alert
 
 # Weather Prediction
 sensor:

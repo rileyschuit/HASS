@@ -63,6 +63,16 @@ camera.amcrest_camera_3:
   friendly_name: 'Side entry'
   hidden: False
 
+switch.garage_light_1_switch:
+  friendly_name: 'Garage light 1'
+  hidden: False
+  icon: mdi:lightbulb
+
+switch.garage_light_2_switch:
+  friendly_name: 'Garage light 2'
+  hidden: False
+  icon: mdi:lightbulb
+
 switch.master_outside_light_switch:
   friendly_name: 'Master outside light'
   hidden: False
