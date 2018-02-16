@@ -50,6 +50,9 @@ input_boolean:
       name: Interesting Behavior
       initial: on
       icon: mdi:message-alert
+  garage_value_storage:
+      name: Garage value storage 
+      initial: off
 
 # Weather Prediction
 sensor:
@@ -100,7 +103,8 @@ amcrest:
     stream_source: rtsp
 
 camera:
-  - platform: amcrest
+  - name: amcrest
+    platform: amcrest
 
 device_tracker:
   - platform: unifi
@@ -109,6 +113,10 @@ device_tracker:
     password: !secret unifi_pw
     site_id: default
     verify_ssl: 'False'
+  - platform: nmap_tracker
+    hosts: 10.0.1.0/24
+    exclude:
+      - 10.0.1.11
 
 zwave:
     usb_path: /dev/ttyUSB0
@@ -130,15 +138,6 @@ zwave:
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
-
-#zoneminder:
-#  host: 10.0.1.21
-#  host: !secret zm_host 
-#  path: !secret zm_path
-#  path_zms: !secret zms_path 
-#  ssl: True
-#  username: !secret zm_user 
-#  password: !secret zm_pass 
 
 shell_command: !include shell_command.yml
 

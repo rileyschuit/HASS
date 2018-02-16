@@ -18,11 +18,13 @@
     - service: shell_command.garage_opened
 
 ############################################################################
-# GOAL: Enter through garage, enabled 10 minute timer for overhead lights  #
+# GOAL: Enter through garage, enabled 60 minute timer for overhead lights  #
 ############################################################################
 
-- id: turn_on_garage_lights
-  alias: Actions for garage doors open 
+
+# Store value when ether door opens
+- id : set_garage_light_timer_60_minutes
+  alias: Garage light timers - 10 min timer
   initial_state: true
   trigger:
     - platform: state
@@ -33,37 +35,68 @@
       entity_id: binary_sensor.garage_door_2_sensor 
       to: 'on'
   action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.garage_value_storage
+    
+- id: turn_on_garage_lights
+  alias: Storage for garage light timer 
+  initial_state: true
+  trigger:
+    platform: state
+    entity_id: input_boolean.garage_value_storage
+    state: 'on'
+  action:
     - service: switch.turn_on
       entity_id: switch.garage_light_1_switch 
     - service: switch.turn_on
       entity_id: switch.garage_light_2_switch
 
-- id : set_garage_light_timer_10_minutes
-  alias: Grage light timers - 10 min timer
+# Set timer with light turning on AND garage_light_bool on
+- id: set_garage_light_timer 
+  alias: Turn off lights after 60 minutes 
   initial_state: true
   trigger:
     - platform: state
-      entity_id: switch.garage_light_1_switch 
+      entity_id: switch.garage_light_1_switch
       to: 'on'
       for:
-        minutes: 10 
+        minutes: 60
     - platform: state
-      entity_id: switch.garage_light_2_switch 
+      entity_id: switch.garage_light_2_switch
       to: 'on'
       for:
-        minutes: 10 
-  condition:
-    condition: or
-    conditions:
+        minutes: 60
+  condition: 
     - condition: state
-      entity_id: binary_sensor.garage_door_1_sensor 
-      state: 'off'
-    - condition: state
-      entity_id: binary_sensor.garage_door_2_sensor
-      state: 'off'
+      entity_id: input_boolean.garage_value_storage
+      state: 'on'
   action:
     - service: switch.turn_off
-      entity_id: switch.garage_light_1_switch 
+      entity_id: switch.garage_light_1_switch
+    - service: switch.turn_off
+      entity_id: switch.garage_light_2_switch
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.garage_value_storage
+
+############################################################################
+# / GOAL                                                                   #
+############################################################################
+
+############################################################################
+# Turn off Garage lights at 10 PM                                          #
+############################################################################
+
+- id: turn_off_garage_lights_at_10pm
+  alias: Turn off Eco mode at 10 PM
+  initial_state: true
+  trigger:
+    - platform: time
+      at: '22:00:00'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.garage_light_1_switch
     - service: switch.turn_off
       entity_id: switch.garage_light_2_switch
 

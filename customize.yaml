@@ -36,11 +36,6 @@ device_tracker.computer__rileys_work_laptop:
   hidden: False
   icon: mdi:laptop-mac
 
-device_tracker.computer__schuitmac:
-  friendly_name: 'Home iMac'
-  hidden: False
-  icon: mdi:desktop-mac
-
 device_tracker.phone__riley:
   friendly_name: 'Riley'
   hidden: False
