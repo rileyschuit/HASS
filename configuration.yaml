@@ -113,10 +113,6 @@ device_tracker:
     password: !secret unifi_pw
     site_id: default
     verify_ssl: 'False'
-  - platform: nmap_tracker
-    hosts: 10.0.1.0/24
-    exclude:
-      - 10.0.1.11
 
 zwave:
     usb_path: /dev/ttyUSB0
