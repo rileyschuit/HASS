@@ -12,7 +12,7 @@
 # GOAL: When enabled, alert on odd behavior
 ############################################################################
    
-   - id: alert_when_enabled
+- id: alert_when_enabled
   alias: Alert when enabled
   initial_state: true
   trigger:
