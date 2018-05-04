@@ -22,7 +22,7 @@ comfort:
   - climate.hallway
 cameras:
   name: "Outside Cameras"
-  view: false 
+  view: false
   icon: mdi:cctv
   entities:
   - camera.amcrest_camera
@@ -58,7 +58,7 @@ automation_details:
   icon: mdi:settings-box
   entities:
   - automation.sunrise
-  - automation.sunset 
+  - automation.sunset
   - automation.grage_light_timers__10_min_timer
   - automation.master_outside_light__15_min_timer
   - automation.fish_tank_light_at_6_am
@@ -75,4 +75,3 @@ settings:
   entities:
   - group.switch_details
   - group.automation_details
-

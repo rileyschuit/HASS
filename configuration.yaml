@@ -1,26 +1,27 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: !secret home_name 
+  name: !secret home_name
   # Location required to calculate the time the sun rises and sets
-  latitude: !secret latitude 
+  latitude: !secret latitude
   longitude: !secret longitude
   # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: !secret elevation 
+  elevation: !secret elevation
   # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: !secret time_zone 
+  time_zone: !secret time_zone
   customize: !include customize.yaml
 
 # Enables the frontend
 frontend:
+  themes: !include theme_midnight.yaml
 
 # Enables configuration UI
 config:
 
 http:
   # Uncomment this to add a password (recommended!)
-  api_password: !secret api_password 
+  api_password: !secret api_password
 
 # Discover some devices automatically
 discovery:
@@ -44,14 +45,14 @@ input_boolean:
       icon: mdi:leaf
   enable_alerts:
       name: Enable away alerts
-      initial: off 
+      initial: off
       icon: mdi:message-alert
   msg_on_unique_behavior:
       name: Interesting Behavior
       initial: on
       icon: mdi:message-alert
   garage_value_storage:
-      name: Garage value storage 
+      name: Garage value storage
       initial: off
 
 # Weather Prediction
@@ -72,9 +73,9 @@ sensor:
       - cloudiness
   - platform: openweathermap
     forecast: True
-    api_key: !secret openweathermap_api 
+    api_key: !secret openweathermap_api
   - platform: wunderground
-    api_key: b65d0586d56ba400 
+    api_key: b65d0586d56ba400
     monitored_conditions:
       - weather_1d
       - weather_1n
@@ -85,30 +86,9 @@ sensor:
       - weather_4d
       - weather_4n
 
-amcrest:
-  - host: 10.0.1.51
-    username: admin
-    password: !secret camera_password 
-    resolution: high 
-    stream_source: rtsp
-  - host: 10.0.1.52
-    username: admin
-    password: !secret camera_password 
-    resolution: high
-    stream_source: rtsp
-  - host: 10.0.1.53
-    username: admin
-    password: !secret camera_password 
-    resolution: high
-    stream_source: rtsp
-
-camera:
-  - name: amcrest
-    platform: amcrest
-
 device_tracker:
   - platform: unifi
-    host: 10.0.1.2
+    host: 10.0.1.9
     username: !secret unifi_user
     password: !secret unifi_pw
     site_id: default
@@ -117,11 +97,11 @@ device_tracker:
 zwave:
     usb_path: /dev/ttyUSB0
     polling_interval: 30000
-    device_config: 
+    device_config:
       switch.master_outside_light_switch:
         polling_intensity: 1
       switch.porch_light_1_switch:
-        polling_intensity: 2 
+        polling_intensity: 2
       switch.porch_light_2_switch:
         polling_intensity: 2
       switch.shop_outside_light_switch:

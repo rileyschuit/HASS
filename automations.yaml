@@ -1,21 +1,39 @@
-- id: alert_when_enabled 
+- alias: 'Set theme at startup'
+  initial_state: 'on'
+  trigger:
+   - platform: homeassistant
+     event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: dark_theme 
+
+############################################################################
+# GOAL: When enabled, alert on odd behavior
+############################################################################
+   
+   - id: alert_when_enabled
   alias: Alert when enabled
   initial_state: true
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_door_1_sensor 
+      entity_id: binary_sensor.garage_door_1_sensor
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.garage_door_2_sensor 
+      entity_id: binary_sensor.garage_door_2_sensor
       from: 'off'
       to: 'on'
-  condition: 
+  condition:
     - condition: state
       entity_id: input_boolean.enable_alerts
       state: 'on'
   action:
     - service: shell_command.garage_opened
+
+############################################################################
+# / GOAL                                                                   #
+############################################################################
 
 ############################################################################
 # GOAL: Enter through garage, enabled 60 minute timer for overhead lights  #
@@ -28,33 +46,34 @@
   initial_state: true
   trigger:
     - platform: state
-      entity_id: binary_sensor.garage_door_1_sensor 
+      entity_id: binary_sensor.garage_door_1_sensor
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.garage_door_2_sensor 
+      entity_id: binary_sensor.garage_door_2_sensor
       to: 'on'
   action:
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.garage_value_storage
-    
+
 - id: turn_on_garage_lights
-  alias: Storage for garage light timer 
+  alias: Storage for garage light timer
   initial_state: true
   trigger:
     platform: state
     entity_id: input_boolean.garage_value_storage
-    state: 'on'
+    from: 'off'
+    to: 'on'
   action:
     - service: switch.turn_on
-      entity_id: switch.garage_light_1_switch 
+      entity_id: switch.garage_light_1_switch
     - service: switch.turn_on
       entity_id: switch.garage_light_2_switch
 
 # Set timer with light turning on AND garage_light_bool on
-- id: set_garage_light_timer 
-  alias: Turn off lights after 60 minutes 
+- id: set_garage_light_timer
+  alias: Turn off lights after 60 minutes
   initial_state: true
   trigger:
     - platform: state
@@ -67,7 +86,7 @@
       to: 'on'
       for:
         minutes: 60
-  condition: 
+  condition:
     - condition: state
       entity_id: input_boolean.garage_value_storage
       state: 'on'
@@ -89,7 +108,7 @@
 ############################################################################
 
 - id: turn_off_garage_lights_at_10pm
-  alias: Turn off Eco mode at 10 PM
+  alias: Turn off garage doors at 10 PM
   initial_state: true
   trigger:
     - platform: time
@@ -115,7 +134,8 @@
   trigger:
     platform: state
     entity_id: input_boolean.eco_mode_till_4_pm
-    state: 'on'  
+    from: 'off'
+    to: 'on'
   action:
     - service: switch.turn_off
       entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
@@ -130,14 +150,15 @@
   trigger:
     platform: state
     entity_id: input_boolean.eco_mode_till_4_pm
-    state: 'off'  
+    from: 'on'
+    to: 'off'
   action:
     - service: switch.turn_on
       entity_id: switch.aeotec_dsc06106_smart_energy_switch_switch
     - service: climate.set_operation_mode
       data:
         entity_id: climate.hallway
-        operation_mode: heat
+        operation_mode: auto
 
 - id: turn_off_eco_at_4pm
   alias: Turn off Eco mode at 4 PM
@@ -145,7 +166,7 @@
   trigger:
     - platform: time
       at: '16:00:00'
-  condition: 
+  condition:
     - condition: state
       entity_id: input_boolean.eco_mode_till_4_pm
       state: 'on'
@@ -155,7 +176,7 @@
     - service: climate.set_operation_mode
       data:
         entity_id: climate.hallway
-        operation_mode: heat
+        operation_mode: auto
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.eco_mode_till_4_pm
@@ -174,17 +195,17 @@
     - service: zwave.heal_network
 
 - id: master_outside_light_15min
-  alias: Master outside light - 15 min timer 
+  alias: Master outside light - 15 min timer
   initial_state: true
   trigger:
     platform: state
-    entity_id: switch.master_outside_light_switch 
+    entity_id: switch.master_outside_light_switch
     to: 'on'
     for:
       minutes: 15
   action:
     - service: switch.turn_off
-      entity_id: switch.master_outside_light_switch 
+      entity_id: switch.master_outside_light_switch
 
 - id: nest_set_away
   alias: Nest set to away
@@ -212,18 +233,18 @@
   trigger:
     platform: sun
     event: sunset
-    offset: '+00:00:00'  
+    offset: '+00:00:00'
   action:
     - service: switch.turn_on
-      entity_id: switch.garage_door_lights_switch 
+      entity_id: switch.garage_door_lights_switch
     - service: switch.turn_on
-      entity_id: switch.front_door_light_switch 
+      entity_id: switch.front_door_light_switch
     - service: switch.turn_on
-      entity_id: switch.porch_light_1_switch 
+      entity_id: switch.porch_light_1_switch
     - service: switch.turn_on
-      entity_id: switch.porch_light_2_switch 
+      entity_id: switch.porch_light_2_switch
     - service: switch.turn_on
-      entity_id: switch.shop_outside_light_switch 
+      entity_id: switch.shop_outside_light_switch
     - service: switch.turn_on
       entity_id: switch.fish_tank_light
 
@@ -233,18 +254,18 @@
   trigger:
     platform: sun
     event: sunrise
-    offset: '+00:00:00'  
+    offset: '+00:00:00'
   action:
     - service: switch.turn_off
-      entity_id: switch.garage_door_lights_switch 
+      entity_id: switch.garage_door_lights_switch
     - service: switch.turn_off
-      entity_id: switch.front_door_light_switch 
+      entity_id: switch.front_door_light_switch
     - service: switch.turn_off
-      entity_id: switch.porch_light_1_switch 
+      entity_id: switch.porch_light_1_switch
     - service: switch.turn_off
-      entity_id: switch.porch_light_2_switch 
+      entity_id: switch.porch_light_2_switch
     - service: switch.turn_off
-      entity_id: switch.shop_outside_light_switch 
+      entity_id: switch.shop_outside_light_switch
     - service: switch.turn_off
       entity_id: switch.fish_tank_light
 
@@ -273,4 +294,3 @@
   action:
     - service: switch.turn_off
       entity_id: switch.fish_tank_light
-
