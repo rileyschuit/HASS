@@ -1,4 +1,4 @@
-homeassistant:
+omeassistant:
   # Name of the location where Home Assistant is running
   name: !secret home_name
   # Location required to calculate the time the sun rises and sets
@@ -55,6 +55,15 @@ input_boolean:
       name: Garage value storage
       initial: off
 
+camera:
+  - platform: uvc
+    nvr: !secret uvc_server
+    key: !secret uvc_api 
+    #port: 7443
+
+
+ios:
+            
 # Weather Prediction
 sensor:
   - platform: time_date

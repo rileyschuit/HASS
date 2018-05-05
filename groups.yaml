@@ -25,9 +25,8 @@ cameras:
   view: false
   icon: mdi:cctv
   entities:
-  - camera.amcrest_camera
-  - camera.amcrest_camera_2
-  - camera.amcrest_camera_3
+  - camera.driveway 
+  - camera.front_door
 weather:
   name: Weather
   view: false
