@@ -5,10 +5,10 @@
 Currently running version 0.49.0  
   
 Using the following:  
-[Amcrest Cameras](https://home-assistant.io/components/camera.amcrest/)
-[NEST Thermostat and Protect](https://home-assistant.io/components/nest/)  
-[Slack via shell commands for webhooks](https://home-assistant.io/components/shell_command/)   
-[Ubiquti Unifi for device tracking](https://home-assistant.io/components/device_tracker.unifi/)  
+[Unifi Cameras](https://www.home-assistant.io/components/camera.uvc/)  
+[NEST Thermostat and Protect](https://home-assistant.io/components/nest/)  
+[Slack via shell commands for webhooks](https://home-assistant.io/components/shell_command/)  
+[Ubiquti Unifi for device tracking](https://home-assistant.io/components/device_tracker.unifi/)  
   
 A few example summaries:  
 1. Input boolean for setting thermostat to eco and turning off a zwave switch. Additional automation for turning things back at 4 PM.  
