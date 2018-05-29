@@ -6,6 +6,10 @@ switch.aeotec_dsc06106_smart_energy_switch_switch:
   friendly_name: "Hot Water Recirculator"
   icon: mdi:power-plug
 
+sensor.slushpool_confirmed_rewards:
+  friendly_name: "SlushPool Confirmed Rewards"
+  icon: mdi:wallet
+
 climate.hallway:
   friendly_name: 'Hallway Thermostat'
   hidden: False

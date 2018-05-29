@@ -4,7 +4,6 @@ default_view:
   entities:
   - device_tracker.phone__riley
   - device_tracker.phone__leanne
-  - group.cameras
   - group.weather
   - group.comfort
   - group.shortcuts
@@ -22,13 +21,26 @@ comfort:
   - climate.hallway
 cameras:
   name: "Outside Cameras"
-  view: false
+  view: true
   icon: mdi:cctv
   entities:
-  - camera.driveway 
+  - camera.driveway
   - camera.front_door
+  - camera.side_entrance
+  - camera.shop_driveway
+crypto:
+  name: "Crypto"
+  view: true
+  icon: mdi:bitcoin
+  entities:
+  - group.crypto_details
+crypto_details:
+  name: "Crypto Details"
+  view: false
+  entities:
+  - sensor.slushpool_confirmed_rewards
 weather:
-  name: Weather
+  name: "Weather"
   view: false
   entities:
   - sensor.pws_weather_1d

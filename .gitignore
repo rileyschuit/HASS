@@ -3,3 +3,6 @@ secrets.yaml
 home-assistant_v2.db
 OZW_Log.txt
 home-assistant_v2.log
+home-assistant.log
+plex.conf
+.DS_Store

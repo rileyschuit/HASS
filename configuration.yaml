@@ -1,41 +1,27 @@
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: !secret home_name
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret latitude
   longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: !secret elevation
-  # metric for Metric, imperial for Imperial
   unit_system: imperial
   # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone: !secret time_zone
   customize: !include customize.yaml
 
-# Enables the frontend
 frontend:
   themes: !include theme_midnight.yaml
 
-# Enables configuration UI
 config:
 
 http:
-  # Uncomment this to add a password (recommended!)
   api_password: !secret api_password
 
-# Discover some devices automatically
 discovery:
 
-# Allows you to issue voice commands from the frontend in enabled browsers
-#conversation:
-
-# Enables support for tracking state changes over time.
 history:
 
-# View all events in a logbook
 logbook:
 
-# Track the sun
 sun:
 
 input_boolean:
@@ -58,73 +44,29 @@ input_boolean:
 camera:
   - platform: uvc
     nvr: !secret uvc_server
-    key: !secret uvc_api 
-    #port: 7443
-
+    key: !secret uvc_api
 
 ios:
-            
-# Weather Prediction
-sensor:
-  - platform: time_date
-    display_options:
-      - 'time'
-      - 'date'
-  - platform: moon
-  - platform: yr
-    monitored_conditions:
-      - temperature
-      - symbol
-      - precipitation
-      - windSpeed
-      - windDirection
-      - humidity
-      - cloudiness
-  - platform: openweathermap
-    forecast: True
-    api_key: !secret openweathermap_api
-  - platform: wunderground
-    api_key: b65d0586d56ba400
-    monitored_conditions:
-      - weather_1d
-      - weather_1n
-      - weather_2d
-      - weather_2n
-      - weather_3d
-      - weather_3n
-      - weather_4d
-      - weather_4n
 
-device_tracker:
-  - platform: unifi
-    host: 10.0.1.9
-    username: !secret unifi_user
-    password: !secret unifi_pw
-    site_id: default
-    verify_ssl: 'False'
+zone: !include zone.yaml
 
-zwave:
-    usb_path: /dev/ttyUSB0
-    polling_interval: 30000
-    device_config:
-      switch.master_outside_light_switch:
-        polling_intensity: 1
-      switch.porch_light_1_switch:
-        polling_intensity: 2
-      switch.porch_light_2_switch:
-        polling_intensity: 2
-      switch.shop_outside_light_switch:
-        polling_intensity: 2
-      switch.front_door_light_switch:
-        polling_intensity: 2
-      switch.garage_door_lights_switch:
-        polling_intensity: 2
+sensor: !include sensor.yaml
+
+sensor slushpool_status:
+   - platform: rest
+     name: Slushpool Confirmed Rewards
+     resource: !secret slushpool_resource 
+     value_template: '{{ value_json.confirmed_reward }}'
+
+device_tracker: !include device_tracker.yaml
+
+zwave: !include zwave.yaml
 
 nest:
   client_id: !secret nest_client_id
   client_secret: !secret nest_client_secret
 
-shell_command: !include shell_command.yml
+# shell_command: !include shell_command.yml
 
 group: !include groups.yaml
 automation: !include automations.yaml

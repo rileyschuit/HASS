@@ -1,0 +1,9 @@
+- platform: unifi
+  host: 10.0.1.9
+  username: !secret unifi_user
+  password: !secret unifi_pw
+  site_id: default
+  verify_ssl: 'False'
+- platform: nmap_tracker
+  hosts: 10.0.1.0/24
+
